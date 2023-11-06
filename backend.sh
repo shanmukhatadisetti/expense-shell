@@ -1,22 +1,39 @@
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-dnf install nodejs -y
+source common.sh
+echo Download nodejs repos
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>log_file
 
-cp backend.service /etc/systemd/system/backend.service
+echo Installing nodejs
+dnf install nodejs -y &>>log_file
 
-rm -rf cd /app
+echo copying backend configuration
+cp backend.service /etc/systemd/system/backend.service &>>log_file
 
-useradd expense
+echo removing app content
+rm -rf cd /app &>>log_file
+
+echo adding user to application
+useradd expense &>>log_file
+
 mkdir /app
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
+
+echo Downloading application content
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
+
 cd /app
-unzip /tmp/backend.zip
 
-npm install
+echo Extracting application content
+unzip /tmp/backend.zip &>>log_file
 
-systemctl daemon-reload
-systemctl enable backend
-systemctl start backend
+echo installing Nodejs Dependencies
+npm install &>>log_file
 
-dnf install mysql -y
+echo start Backend Service
+systemctl daemon-reload &>>log_file
+systemctl enable backend &>>log_file
+systemctl start backend &>>log_file
 
-mysql -h mysql.autonagar.in -uroot -pExpenseApp@1 < /app/schema/backend.sql
+echo Installing Mysql client
+dnf install mysql -y &>>log_file
+
+echo Load schema
+mysql -h mysql.autonagar.in -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
