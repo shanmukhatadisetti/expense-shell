@@ -1,4 +1,6 @@
 source common.sh
+component=backend
+
 echo Download nodejs repos
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 echo $?
@@ -21,15 +23,9 @@ echo $?
 
 mkdir /app
 
-echo Downloading application content
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>$log_file
-echo $?
-
 cd /app
 
-echo Extracting application content
-unzip /tmp/backend.zip &>>$log_file
-echo $?
+download_and_extract
 
 echo installing Nodejs Dependencies
 npm install &>>$log_file
