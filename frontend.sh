@@ -1,4 +1,6 @@
 source common.sh
+component=frontend
+
 echo installing Nginx
 dnf install nginx -y &>>$log_file
 echo $?
@@ -11,15 +13,9 @@ echo Removing old nginx content
 rm -rf /usr/share/nginx/html/* &>>$log_file
 echo $?
 
-echo Downloading frontend code
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
-echo $?
-
 cd /usr/share/nginx/html
 
-echo Extracting frontend code
-unzip /tmp/frontend.zip &>>$log_file
-echo $?
+download_and_extract
 
 echo Starting Nginx services
 systemctl enable nginx &>>$log_file
