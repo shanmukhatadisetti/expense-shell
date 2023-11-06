@@ -23,6 +23,5 @@ echo $?
 
 echo Starting Nginx services
 systemctl enable nginx &>>log_file
-echo $?
 systemctl restart nginx &>>log_file
 echo $?
