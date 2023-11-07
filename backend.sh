@@ -2,7 +2,7 @@ source common.sh
 component=backend
 
 type npm &>>$log_file
-if [ $? -ne 0 ], then
+if [ $? -ne 0 ]; then
   echo Download nodejs repos
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
   stat_check
@@ -22,7 +22,7 @@ stat_check
 
 echo adding user to application
 id expense &>>$log_file
-if [ $? -ne 0 ], then
+if [ $? -ne 0 ]; then
   useradd expense &>>$log_file
 fi
 stat_check
