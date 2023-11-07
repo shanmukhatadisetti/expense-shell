@@ -18,7 +18,10 @@ rm -rf cd /app &>>$log_file
 stat_check
 
 echo adding user to application
-useradd expense &>>$log_file
+id expense &>>$log_file
+if [ $? -ne 0 ], then
+  useradd expense &>>$log_file
+fi
 stat_check
 
 mkdir /app
