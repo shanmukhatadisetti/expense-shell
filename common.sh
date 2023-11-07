@@ -12,9 +12,9 @@ download_and_extract() {
 
 stat_check() {
   if [ $? -eq 0 ]; then
-    echo SUCCESS
+    echo -e "\e[32mSUCCESS\e[0m"
   else
-    echo FAILED
+    echo -e "\e[31mFAILED\e[0m"
     exit 1
   fi
 }
