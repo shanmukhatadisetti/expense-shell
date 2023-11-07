@@ -9,7 +9,7 @@ if [ $? -ne 0 ], then
 
   echo Installing nodejs
   dnf install nodejs -y &>>$log_file
-stat_check
+  stat_check
 fi
 
 echo copying backend configuration
