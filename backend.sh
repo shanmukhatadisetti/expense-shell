@@ -9,8 +9,8 @@ if [ $? -ne 0 ], then
 
   echo Installing nodejs
   dnf install nodejs -y &>>$log_file
-fi
 stat_check
+fi
 
 echo copying backend configuration
 cp backend.service /etc/systemd/system/backend.service &>>$log_file
