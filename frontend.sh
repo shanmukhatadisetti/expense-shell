@@ -3,7 +3,13 @@ component=frontend
 
 echo installing Nginx
 dnf install nginx -y &>>$log_file
-echo $?
+if [ $? -eq 0 ]; then
+  echo SUCCESS
+else
+  echo FAILED
+fi
+
+
 
 echo copying expense config file in Nginx
 cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
