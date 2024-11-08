@@ -2,6 +2,7 @@ dnf module disable nodejs -y
 dnf module enable nodejs:18 -y
 
 dnf install nodejs -y
+rm -rf /app
 
 useradd expense
 
