@@ -6,6 +6,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo Enabling Nodejs 18 version
@@ -14,6 +15,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo Installing Nodejs
@@ -22,6 +24,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 rm -rf /app
@@ -32,6 +35,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 echo Copying Backend service file to system
 cp backend.service /etc/systemd/system/backend.service &>>log_file
@@ -39,6 +43,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 mkdir /app
@@ -49,6 +54,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 cd /app
@@ -59,6 +65,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo Installing Nodejs Dependencies
@@ -67,6 +74,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo starting backend services
@@ -78,6 +86,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo Installing Mysql Client
@@ -86,6 +95,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
 
 echo Loading Schema
@@ -94,4 +104,5 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
+  exit 1
 fi
