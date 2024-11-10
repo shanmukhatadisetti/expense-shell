@@ -34,6 +34,8 @@ systemctl daemon-reload &>>log_file
 systemctl enable backend &>>log_file
 systemctl start backend &>>log_file
 
+echo Installing Mysql Client
 dnf install mysql -y
 
+echo Loading Schema
 mysql -h mysql.autonagar.in -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
