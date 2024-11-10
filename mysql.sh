@@ -2,7 +2,10 @@ source common.sh
 
 echo Disabling Mysql
 dnf module disable mysql -y &>>$log_file
-stat_check
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCUSS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
 
 echo Copying Mysql REpo
 cp mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
