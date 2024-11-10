@@ -16,7 +16,10 @@ stat_check
 rm -rf /app
 
 echo Adding user
-useradd expense &>>$log_file
+id expense &>>$log_file
+if [ $? -ne 0 ]; then
+  useradd expense &>>$log_file
+fi
 stat_check
 
 echo Copying Backend service file to system
