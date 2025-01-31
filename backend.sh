@@ -7,7 +7,7 @@ check_status
 echo Enabling Nodejs 18-version
 dnf module enable nodejs:18 -y &>>$logs
 check_status
-
+component=backend
 cp backend.service /etc/systemd/system/backend.service
 
 echo Installing Nodejs
@@ -20,16 +20,9 @@ check_status
 
 rm -rf /app
 mkdir /app &>>$logs
-
-echo Downloading Backend-zip Files
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>$logs
-check_status
-
 cd /app
 
-echo Unzipping Backend.zip File
-unzip /tmp/backend.zip &>>$logs
-check_status
+Download_and_Extarct
 
 echo Installing Dependencies
 npm install &>>$logs
