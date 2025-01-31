@@ -15,7 +15,8 @@ dnf install nodejs -y &>>$logs
 check_status
 
 echo Adding Users
-useradd expense &>>$logs
+id expense
+Useradd
 check_status
 
 rm -rf /app

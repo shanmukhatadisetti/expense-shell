@@ -4,7 +4,6 @@ if [ $? -eq 0 ]; then
 else
   echo -e "\e[31mFAILURE\e[0m"
   exit 1
-  echo $?
 fi
 }
 
@@ -16,4 +15,10 @@ Download_and_Extarct () {
   echo Unzipping $component.zip File
   unzip /tmp/$component.zip &>>$logs
   check_status
+}
+
+Useradd () {
+  if [ $? -ne 0 ]; then
+    useradd expense &>>$logs
+  fi
 }
