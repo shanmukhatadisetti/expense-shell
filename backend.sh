@@ -2,6 +2,7 @@ logs=/tmp/expense.log
 echo Disabling Nodejs
 dnf module disable nodejs -y &>>$logs
 
+
 echo Enabling Nodejs 18-version
 dnf module enable nodejs:18 -y &>>$logs
 cp backend.service /etc/systemd/system/backend.service
