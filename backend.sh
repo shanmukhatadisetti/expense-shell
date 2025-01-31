@@ -1,5 +1,7 @@
 source common.sh
 logs=/tmp/expense.log
+component=backend
+
 echo Disabling Nodejs
 dnf module disable nodejs -y &>>$logs
 check_status
@@ -7,7 +9,8 @@ check_status
 echo Enabling Nodejs 18-version
 dnf module enable nodejs:18 -y &>>$logs
 check_status
-component=backend
+
+echo Copying Backend service
 cp backend.service /etc/systemd/system/backend.service
 
 echo Installing Nodejs

@@ -1,15 +1,24 @@
+source common.sh
+component=frontend
+
+echo Installing Nginx
 dnf install nginx -y
+check_status
+
+echo Placing expense conf file in Nginx
 cp expense.conf /etc/nginx/default.d/expense.conf
+check_status
 
-
-
+echo Removing Old Content
 rm -rf /usr/share/nginx/html/*
-
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip
+check_status
 
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
 
 
+Download_and_Extarct
+
+echo Starting Nginx Service
 systemctl enable nginx
 systemctl restart nginx
+check_status
