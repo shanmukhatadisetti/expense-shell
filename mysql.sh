@@ -1,3 +1,4 @@
+source common.sh
 logs=/tmp/expense.log
 echo Disabling mysql module
 dnf module disable mysql -y &>>$logs
