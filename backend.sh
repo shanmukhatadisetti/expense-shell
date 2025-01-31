@@ -1,3 +1,4 @@
+source=common.sh
 logs=/tmp/expense.log
 echo Disabling Nodejs
 dnf module disable nodejs -y &>>$logs
