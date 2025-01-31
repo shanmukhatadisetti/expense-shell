@@ -3,7 +3,7 @@ Description = Backend Service
 
 [Service]
 User=expense
-Environment=DB_HOST="172.31.81.18"
+Environment=DB_HOST="mysql.autonagar.in"
 ExecStart=/bin/node /app/index.js
 SyslogIdentifier=backend
 
