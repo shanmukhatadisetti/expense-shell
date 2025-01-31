@@ -1,4 +1,4 @@
-logs = /tmp/expense.log
+logs=/tmp/expense.log
 dnf module disable nodejs -y &>>logs
 dnf module enable nodejs:18 -y &>>logs
 cp backend.service /etc/systemd/system/backend.service
