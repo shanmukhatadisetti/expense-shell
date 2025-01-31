@@ -1,22 +1,23 @@
-dnf module disable nodejs -y
-dnf module enable nodejs:18 -y
+logs = /tmp/expense.log
+dnf module disable nodejs -y &>>logs
+dnf module enable nodejs:18 -y &>>logs
 cp backend.service /etc/systemd/system/backend.service
-dnf install nodejs -y
+dnf install nodejs -y &>>logs
 
-useradd expense
+useradd expense &>>logs
 rm -rf /app
-mkdir /app
+mkdir /app &>>logs
 
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>logs
 cd /app
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>logs
 
-npm install
-systemctl daemon-reload
+npm install &>>logs
+systemctl daemon-reload &>>logs
 
-systemctl enable backend
-systemctl start backend
+systemctl enable backend &>>logs
+systemctl start backend &>>logs
 
-dnf install mysql -y
+dnf install mysql -y &>>logs
 
-mysql -h mysql.autonagar.in -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h mysql.autonagar.in -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>logs
